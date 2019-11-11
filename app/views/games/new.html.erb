@@ -1,0 +1,23 @@
+<div class="container text-center">
+  <div class="my-5">
+    <h1>New game</h1>
+  </div>
+  <div class="d-flex justify-content-center">
+    <% @letters.each do |letter| %>
+      <div class="alert alert-primary mx-2" role="alert"><%= letter %></div>
+    <% end %>
+  </div>
+  <form action="/score" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="form-group mt-5 col-md-6 mx-auto">
+      <div class="input-group mb-3">
+        <input type="text" name="word" placeholder="What is the longest word you can find?" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input type="text" name="letters" value="<%= @letters.join(" ") %>" hidden>
+        <input type="text" name="start" value="<%= @start_time %>" hidden>
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Play</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
